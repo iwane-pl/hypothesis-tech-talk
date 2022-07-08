@@ -14,11 +14,43 @@
         font-weight: normal;
       }
       .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+
+      .row {
+        display: flex;
+      }
+
+      .column {
+        flex: 50%;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+
+      .clear {
+          clear: both;
+      }
+
+      .title-image img {
+          height: 500px;
+      }
+
+      .flex-slide {
+          display: flex;
+          flex-direction: column;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          overflow: clip;
+      }
+
+      .flex-slide > * {
+          /*margin: auto;*/
+      }
     </style>
   </head>
   <body onload="var slideshow = remark.create({
   sourceUrl: 'index.md',
   ratio: '16:9',
+  highlightStyle: 'monokai',
   });
 ">
     <textarea id="source">
