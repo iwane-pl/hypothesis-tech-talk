@@ -11,20 +11,40 @@ class: center, title-image
 
 # Software testing
 
+![](img/90-drive-test.png)
+
+???
+
+Trochę o testowaniu, żebyśmy mieli wspólny punkt wyjścia.
+
+
+---
+
+## Software testing
+
 .row[
 .column[
-![](img/90-drive-test.png)
+"Software testing is the act of examining the artifacts and the behavior of the software under test
+by validation and verification." 
+
+    Verification: Are we building the product right?
+    Validation: Are we building the right product?
+
 ]
+
 .column[
+.center[
 ![](img/meme-dev-humor-developer-vs-tester-56.jpg)
+]
 ]
 ]
 
 ???
+W skrócie o testowaniu - o co chodzi. 
 
-Trochę o testowaniu.
+Weryfikacja - zgodnie z designem, walidacja - zgodnie z wymaganiami klienta.
 
-Relacje między testerami a developerami bywają... różne :)
+Developerzy mają tendencję do sprawdzania tylko 'happy path'
 
 ---
 
@@ -88,6 +108,9 @@ Klasyczny dowcip (suchar?) na początek.
 ]
 ]
 
+???
+
+Nie testujemy tylko 'happy path'... ale i to nie pomaga. 100% line coverage też nie.
 
 ---
 
@@ -99,7 +122,7 @@ https://en.wikipedia.org/wiki/Test_design_technique
 * Equivalence Partitioning
 * State Transition
 * Decision Table
-* Error Guessing (exploratory)
+* Error Guessing (experience-based)
 * [Combinatorial testing](https://hexawise.com/software-testing-glossary#combinatorial-testing)
 * Property-based Testing
 * ...
@@ -167,7 +190,7 @@ def test_factorize(n, expected):
     assert factorize(n) == expected
 ```
 
-[Source article](https://levelup.gitconnected.com/unit-testing-in-python-property-based-testing-892a741fc119)
+.right[.small[[Source article](https://levelup.gitconnected.com/unit-testing-in-python-property-based-testing-892a741fc119)]]
 
 ]
 ]
@@ -270,7 +293,7 @@ def test_factorize_multiplication_property(n):
         product *= factor
     assert product == n, f"factorize({n}) returned {factors}"
 ```
-[Source article](https://levelup.gitconnected.com/unit-testing-in-python-property-based-testing-892a741fc119)
+.right[.small[[Source article](https://levelup.gitconnected.com/unit-testing-in-python-property-based-testing-892a741fc119)]]
 ]
 ]
 
@@ -358,8 +381,7 @@ class PdfInfo:
     nb_characters: int
     user_attributes: Dict[str, Optional[str]]
 
-# Usage in test to generate one PdfInfo:
-# @given(st.builds(PdfInfo))
+# Usage in test to generate one PdfInfo: @given(st.builds(PdfInfo))
 
 # Now show some samples:
 for _ in range(10):
@@ -385,10 +407,8 @@ https://hypothesis.readthedocs.io/en/latest/ghostwriter.html
     The idea is to provide an easy way to start property-based testing, and a seamless transition to more complex
     test code - because ghostwritten tests are source code that you could have written for yourself.
     
-    So just pick a function you’d like tested, and feed it to one of the functions below.
-
+    So just pick a function you’d like tested, and feed it to one of the functions below. (...)
 --
-
 ```python
 # This test code was written by the `hypothesis.extra.ghostwriter` module
 # and is provided under the Creative Commons Zero public domain dedication.
@@ -421,8 +441,42 @@ def test_fuzz_compile(pattern, flags):
 
 ---
 
+# References
+
+* [M. Thoma "Property-based Testing with Python"](https://levelup.gitconnected.com/unit-testing-in-python-property-based-testing-892a741fc119)
+* [hypothesis main page](https://hypothesis.works)
+* [Wiki on Software Testing](https://en.wikipedia.org/wiki/Software_testing)
+* [Software Engineering | Verification and Validation](https://www.geeksforgeeks.org/software-engineering-verification-and-validation/)
+
+---
+class: center
+background-image: url(img/seal.jpg)
+
+# Thank you!
+
+---
+
 # Q&A
-            
+
+<hr />
+
+```python
+# Third party
+import hypothesis.strategies as some
+from hypothesis import given
+
+# First party
+from factorize import factorize
+
+@given(some.integers(min_value=-(10 ** 6), max_value=10 ** 6))
+def test_factorize_multiplication_property(n):
+    factors = factorize(n)
+    product = 1
+    for factor in factors:
+        product *= factor
+    assert product == n, f"factorize({n}) returned {factors}"
+```
+
 <hr />
 Q: How `hypothesis` caches examples in CI?
 
@@ -431,15 +485,4 @@ A: Example database can be shared through git repository or by using Redis, or s
   
 <hr/>
 
----
-
-# References
-
-* [M. Thoma "Property-based Testing with Python"](https://levelup.gitconnected.com/unit-testing-in-python-property-based-testing-892a741fc119)
-* [hypothesis main page](https://hypothesis.works)
-
----
-class: center
-background-image: url(img/seal.jpg)
-
-# Thank you!
+.center[Your questions?]
