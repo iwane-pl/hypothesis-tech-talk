@@ -457,6 +457,10 @@ def test_fuzz_compile(pattern, flags):
 * [Wiki on Software Testing](https://en.wikipedia.org/wiki/Software_testing)
 * [Software Engineering | Verification and Validation](https://www.geeksforgeeks.org/software-engineering-verification-and-validation/)
 
+Addons:
+* [Official "external strategies" list](https://hypothesis.readthedocs.io/en/latest/strategies.html)
+* https://pypi.org/project/hypothesis-fspaths/
+
 ---
 class: center
 background-image: url(img/seal.jpg)
@@ -495,3 +499,14 @@ A: Example database can be shared through git repository or by using Redis, or s
 <hr/>
 
 .center[Your questions?]
+
+---
+
+# Q&A
+
+<hr />
+Q: What happens if the filter for a strategy is too strict?
+
+A: There's an exception (and a failed test): https://hypothesis.readthedocs.io/en/latest/data.html#filtering
+
+<hr />
