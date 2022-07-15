@@ -2,6 +2,15 @@ class: center, middle
 
 # `hypothesis` & Property-Based Testing
 
+---
+
+# Agenda
+
+1. Some testing
+2. Property-based testing
+3. `hypothesis`
+4. Q&A
+
 ???
 
 Temat: framework `hypothesis` i trochę testowania ogólnie... a właściwie to na odwrót. 
